@@ -93,6 +93,8 @@ def copyCatch() -> None:
 
 if __name__ == "__main__":
     copyCatch()
+  
+__all__ = ['copyCatch']
 
 #                
 # End of file
