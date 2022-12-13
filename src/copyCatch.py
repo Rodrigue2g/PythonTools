@@ -87,12 +87,12 @@ class CopyCatch:
         elif not copiedFiles:
             print("There are no copied files")
 
-def main() -> None:
+def copyCatch() -> None:
     c = CopyCatch()
     c.copyCatch()
 
 if __name__ == "__main__":
-    main()
+    copyCatch()
 
 #                
 # End of file
