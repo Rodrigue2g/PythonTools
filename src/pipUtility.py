@@ -13,7 +13,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTH
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 #
-# Use Clist as follow: li = Clist() to perform complex append() on a list
+# Use CList as follow: li = CList() to perform complex append() on a list
 #
 class CList(list):
     def __init__(self):
