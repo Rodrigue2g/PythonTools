@@ -6,4 +6,4 @@
   - CList() : Complex list that "ovverides" the append() method for more complex operations, reducing the amount of code you need to write.
   - CopyCatch : Check the resemblance percentage of several files (2-50). To do so, run this python programm in the directory of the files you want to check.
  
-More info on the [DESIGNØ Website](https://designø.com).
+More informations on the [DESIGNØ Website](https://designø.com).
