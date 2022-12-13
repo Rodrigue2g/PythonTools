@@ -58,7 +58,9 @@ class CopyCatch:
                 print("File doesn't exist")
             else:
                 files.append(file)
-        
+        if(len(files) < 2):
+            print("No files to check")
+            raise SystemExit
         print("Loading...")
         texts = []
         for file in files:
