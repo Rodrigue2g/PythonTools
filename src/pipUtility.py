@@ -1,4 +1,4 @@
-# CopyCacth by DESIGNØ®
+# Clist() for python by DESIGNØ®
 # This Software is copyright DESIGNØ®, all rights reserved.
 # Copyright © 2022 DESIGNØ SASU.
 """
