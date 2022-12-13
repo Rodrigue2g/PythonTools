@@ -43,3 +43,6 @@ class CList(list):
                 # Can be seen as a blend of append() and extend()
                 # (ex: in our use case, append a string and a list of string)
 
+#                
+# End of file
+#
