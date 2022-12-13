@@ -14,7 +14,11 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 """
 #
 # Import Designø python tools as follow
-# from pipImport import *
+"""
+url = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main"
+with httpimport.remote_repo(["pipImport"], url):
+    from pipImport import *
+"""
 #
 import urllib
 import httpimport
@@ -23,3 +27,7 @@ with httpimport.remote_repo(["pipUtility"], url):
     from pipUtility import *
 with httpimport.remote_repo(["copyCatch"], url):
     from copyCatch import *
+
+#
+# End of file
+#
