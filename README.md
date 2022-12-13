@@ -1,6 +1,6 @@
 # PythonTools
 
-1. Import the [pipImport file](https://github.com/Dequavious6/PythonTools/edit/main/pipImport.py) in your python programm.
+1. Import the [pipImport file](https://github.com/Dequavious6/PythonTools/blob/main/pipImport.py) in your python programm.
 
 2. Use the python tools from Designø following your needs from this list : 
     - CList() : Complex list that "ovverides" the append() method for more complex operations, reducing the amount of code you need to write.
