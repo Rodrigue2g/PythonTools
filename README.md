@@ -1,6 +1,6 @@
 # PythonTools
 
-1. Import the [pipImport file](https://github.com/Dequavious6/PythonTools/blob/main/pipImport.py) in your python programm as follow:
+1. Import the [pipImport file](https://github.com/Dequavious6/PythonTools/blob/main/pipImport.py) in your python programm as follows:
 ```
 import urllib
 import httpimport
