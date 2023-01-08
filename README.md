@@ -2,6 +2,8 @@
 
 1. Import the [pipImport file](https://github.com/Dequavious6/PythonTools/blob/main/pipImport.py) in your python programm as follow:
 ```
+import urllib
+import httpimport
 url = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main"
 with httpimport.remote_repo(["pipImport"], url):
     from pipImport import *
