@@ -1,4 +1,4 @@
-# PythonTools
+# PythonTools [![Update Pip Import File](https://github.com/Dequavious6/PythonTools/actions/workflows/pipUpdate.yml/badge.svg)](https://github.com/Dequavious6/PythonTools/actions/workflows/pipUpdate.yml)
 
 1. Import the [pipImport file](https://github.com/Dequavious6/PythonTools/blob/main/pipImport.py) in your python programm as follows:
 ```
