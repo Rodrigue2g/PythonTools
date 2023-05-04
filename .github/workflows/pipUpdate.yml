@@ -75,17 +75,28 @@ jobs:
           pip_files=$OUTPUT2
           for file in $pip_files; do
             if ! grep -q "$file" pipImport.py; then
-              sed -i "/^\n#\n# End of file.*/i with httpimport.remote_repo(['${file}'], url):\n    from ${file} import *\n" pipImport.py
+              sed -i "/^#\n# End of file.*/i with httpimport.remote_repo(['${file}'], url):\n    from ${file} import *\n" pipImport.py
             fi
-          done   
+          done
+          
+      - name: Check if file is modified
+        run: |
+          if git diff-index --quiet HEAD --; then
+            echo "::set-output name=modified::false"
+          else
+            echo "::set-output name=modified::true"
+          fi
+        id: check_file
       - name: Commit file
+        if: steps.check_file.outputs.modified == 'true'
         run: |
           git config --local user.name  ${{ github.actor }}
           git add pipImport.py
           git commit -m "Update pipImport.py file"
-          
       - name: Push changes
+        if: steps.check_file.outputs.modified == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
+          
