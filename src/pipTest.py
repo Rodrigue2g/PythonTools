@@ -3,7 +3,7 @@ class PipTest(list):
       pass
    
     def hello(self) -> None:
-      print("Hello World!)
+      print("Hello World!")
       
       
 def pipTest() -> None:
