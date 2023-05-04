@@ -15,7 +15,6 @@ with httpimport.remote_repo(["pipImport"], url):
 &nbsp;
 
 3. Make sure not to call your file __pipImport.py__ to avoid circular import issues 
-
 &nbsp;
 
 More informations on the [DESIGNØ Website](https://designø.com).
