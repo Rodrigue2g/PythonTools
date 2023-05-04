@@ -12,4 +12,5 @@ with httpimport.remote_repo(["pipImport"], url):
     - CList() : Complex list that "ovverides" the append() method for more complex operations, reducing the amount of code you need to write.
     - CopyCatch : Check the resemblance percentage of several files (2-50). To do so, run copyCacth() in the directory of the files you want to check.
 3. Make sure not to call your file __pipImport.py__ to avoid circular import issues 
+
 More informations on the [DESIGNØ Website](https://designø.com).
