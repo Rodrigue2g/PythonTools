@@ -65,7 +65,7 @@ jobs:
           git config --local user.name actions-user
           git config --local user.email "actions@github.com"
           if ! git diff --exit-code; then
-              git add your/files/here
-              git commit -am "GH Action Files added $(date)"
+              git add pipImport.py
+              git commit -am "Update pipImport.py file"
               git push -f origin main
           fi
