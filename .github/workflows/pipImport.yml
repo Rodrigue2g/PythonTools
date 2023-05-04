@@ -9,9 +9,12 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps: 
+    - name: Print repository name
+      run: echo "Running in repository $GITHUB_REPOSITORY"
     - name: Check for new files
       id: check_files
       run: |
+        cd ..
         git fetch --depth=1 origin master
         files=$(git diff --name-only HEAD..origin/master src/)
         if [[ -z "$files" ]]; then
