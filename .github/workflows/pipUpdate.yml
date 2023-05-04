@@ -75,7 +75,7 @@ jobs:
           pip_files=$OUTPUT2
           for file in $pip_files; do
             if ! grep -q "$file" pipImport.py; then
-               sed -i "/^#\n# End of file\.$/i with httpimport.remote_repo(['${file}'], url):\n    from ${file} import *\n" pipImport.py
+               sed -i "/^# End of file.*/i with httpimport.remote_repo(['${file}'], url):\n    from ${file} import *\n" pipImport.py            
             fi
           done
           
