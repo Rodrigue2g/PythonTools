@@ -6,6 +6,12 @@ on:
       - 'src/**'
       - '!src/docs/**'
       - '!src/*.md'
+  pull_request:
+    branches: [ 'main' ]
+    paths:
+      - 'src/**'
+      - '!src/docs/**'
+      - '!src/*.md'
 jobs:
   get_files:
     runs-on: ubuntu-latest
