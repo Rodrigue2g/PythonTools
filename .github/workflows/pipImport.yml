@@ -23,7 +23,7 @@ jobs:
           else
             echo "New files:"
             echo "$files"
-            echo "::set-output name=files::$files"
+            echo "{files}={$files}" >> $GITHUB_OUTPUT
           fi
       - name: Check for new files in pipImport.py
         id: check_pip_files
@@ -33,14 +33,14 @@ jobs:
             if [[ -z "$pip_files" ]]; then
                echo "::set-output name=files::No files in pipImport.py"
             else
-               echo "::set-output name=files::Files in pipImport.py: $pip_files"
+               echo "{files}={$pip_files}" >> $GITHUB_OUTPUT
             fi
       - name: Add new file names to pipImport.py
         if: steps.check_files.outputs.files != ''
         run: |
           src_files="${{ steps.check_files.outputs.files }}"
-          pip_files="${{ steps.check_pip_files.outputs.pip_files }}"
-          for file in $src_files; do
+          pip_files="${{ steps.check_pip_files.outputs.files }}"
+          for file in $pip_files; do
             if ! grep -q "$file" pipImport.py; then
               echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/main/src/$file')" >> pipImport.py
             fi
