@@ -4,7 +4,7 @@ class PipTest(list):
    
     def hello(self) -> None:
       print("Hello World!")
-      print("Hello World!")
+      #print("Hello World!")
       
       
 def pipTest() -> None:
