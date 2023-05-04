@@ -28,13 +28,13 @@ jobs:
       - name: Check for new files in pipImport.py
         id: check_pip_files
         run: |
-          pip_files=$(grep -oP "(?<=remote_repo\(\[').*?(?='\],)" pipImport.py | grep '^src/')
-          if [[ -z "$pip_files" ]]; then
+         pip_files=$(grep -oP "(?<=remote_repo\(\[').*?(?='\],)" pipImport.py | grep '^src/' | grep -oP "(?<=from ).*(?= import)")
+         if [[ -z "$pip_files" ]]; then
             echo "No files in pipImport.py"
-          else
+         else
             echo "Files in pipImport.py:"
             echo "$pip_files"
-          fi
+         fi
       - name: Add new file names to pipImport.py
         if: steps.check_files.outputs.files != ''
         run: |
