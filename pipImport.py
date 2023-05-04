@@ -29,8 +29,5 @@ with httpimport.remote_repo(["copyCatch"], url):
     from copyCatch import *
 
 #
-with httpimport.remote_repo(['pipTest'], url):
-    from pipTest import *
-
 # End of file
 #
