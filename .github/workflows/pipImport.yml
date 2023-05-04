@@ -47,9 +47,8 @@ jobs:
       - env:
           OUTPUT1: ${{needs.get_files.outputs.files_output}}
           OUTPUT2: ${{needs.get_files.outputs.pip_files_output}}
-        run: echo "$OUTPUT1 $OUTPUT2"
-      - name: Add new file names to pipImport.py
         run: |
+          echo "$OUTPUT1 $OUTPUT2"
           src_files="$OUTPUT1"
           pip_files="$OUTPUT2"
           echo $pip_files
