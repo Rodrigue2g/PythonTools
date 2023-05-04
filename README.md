@@ -10,6 +10,10 @@ with httpimport.remote_repo(["pipImport"], url):
 ```
 or 
 ```
+import urllib
+import httpimport
+url = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main"
+with httpimport.remote_repo(["pipImport"], url):
     import pipImport as ø
 ```
 2. Use the python tools from Designø following your needs from this list : 
