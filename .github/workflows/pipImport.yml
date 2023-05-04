@@ -28,7 +28,10 @@ jobs:
       - name: Check for new files in pipImport.py
         id: check_pip_files
         run: |
-           ls
+           if [[ ! -f "pipImport.py" ]]; then
+              echo "pipImport.py not found"
+              exit 1
+           fi
            pip_files=$(grep -oP "(?<=remote_repo\(\[').*?(?='\],)" pipImport.py | grep '^src/' | grep -oP "(?<=from ).*(?= import)")
            if [[ -z "$pip_files" ]]; then
               echo "No files in pipImport.py"
