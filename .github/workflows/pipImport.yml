@@ -1,0 +1,31 @@
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'src/**'
+      - '!src/docs/**'
+      
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Check for new files
+      id: check_files
+      run: |
+        git fetch --depth=1 origin master
+        files=$(git diff --name-only HEAD..origin/master src/)
+        if [[ -z "$files" ]]; then
+          echo "No new files"
+        else
+          echo "New files:"
+          echo "$files"
+          echo "::set-output name=files::$files"
+        fi
+    - name: Add new file names to pipImport.py
+      if: steps.check_files.outputs.files != ''
+      run: |
+        files="${{ steps.check_files.outputs.files }}"
+        for file in $files; do
+          echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/master/src/$file')" >> pipImport.py
+        done
+        sed -i '1i\from httpimport import remote_repo\n' pipImport.py
