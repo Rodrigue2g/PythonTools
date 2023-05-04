@@ -45,7 +45,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - env:
+      - name: update pipImport file
+        env:
           OUTPUT1: ${{needs.get_files.outputs.files_output}}
           OUTPUT2: ${{needs.get_files.outputs.pip_files_output}}
         run: |
@@ -57,4 +58,14 @@ jobs:
             if ! grep -q "$file" pipImport.py; then
               echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/main/src/$file')" >> pipImport.py
             fi
-          done
+          done       
+      - name: Commit files  
+        id: commit_files
+        run:
+          git config --local user.name actions-user
+          git config --local user.email "actions@github.com"
+          if ! git diff --exit-code; then
+              git add your/files/here
+              git commit -am "GH Action Files added $(date)"
+              git push -f origin main
+          fi
