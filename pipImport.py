@@ -27,6 +27,5 @@ with httpimport.remote_repo(["pipUtility"], url):
     from pipUtility import *
 with httpimport.remote_repo(["copyCatch"], url):
     from copyCatch import *
-
 # End of file
 #
