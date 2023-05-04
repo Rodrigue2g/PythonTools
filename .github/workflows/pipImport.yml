@@ -14,7 +14,6 @@ jobs:
     - name: Check for new files
       id: check_files
       run: |
-        cd $GITHUB_REPOSITORY
         git fetch --depth=1 origin main
         files=$(git diff --name-only HEAD..origin/main src/)
         if [[ -z "$files" ]]; then
