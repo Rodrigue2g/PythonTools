@@ -4,6 +4,7 @@ class PipTest(list):
    
     def hello(self) -> None:
       print("Hello World!")
+      print("Hello")
       
       
 def pipTest() -> None:
