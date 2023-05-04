@@ -33,8 +33,7 @@ jobs:
         run: |
           pip_files=$(grep -oP "(?<=remote_repo\(\[ ')[^']+" pipImport.py)
           new_files=$(git diff --name-only HEAD..origin/main | grep '^src/')
-          pip_files="${pip_files}
-$new_files"
+          pip_files="${pip_files}$new_files"
           echo "${{ env.pip_files_output }}=${pip_files}" >> $GITHUB_ENV
 
   update:
