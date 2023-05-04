@@ -58,14 +58,15 @@ jobs:
             if ! grep -q "$file" pipImport.py; then
               echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/main/src/$file')" >> pipImport.py
             fi
-          done       
-      - name: Commit files  
-        id: commit_files
-        run:
-          git config --local user.name actions-user
-          git config --local user.email "actions@github.com"
-          if ! git diff --exit-code; then
-              git add pipImport.py
-              git commit -am "Update pipImport.py file"
-              git push -f origin main
-          fi
+          done   
+      - name: Commit files  # transfer the new html files back into the repository
+        run: |
+          git config --local user.name  ${{ github.actor }}
+          git add pipImport.py
+          git commit -m "Update pipImport.py file"
+          
+      - name: Push changes  # push the output folder to your repo
+        uses: ad-m/github-push-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
