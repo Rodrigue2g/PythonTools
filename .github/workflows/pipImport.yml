@@ -1,15 +1,13 @@
+name: Update Pip Import File
 on:
   push:
     branches: ['main']
     paths:
       - 'src/**'
-      - '!src/docs/**'
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
       - name: Print repository name
         run: echo "Running in repository $GITHUB_REPOSITORY"
       - name: Check for new files
@@ -24,11 +22,23 @@ jobs:
             echo "$files"
             echo "::set-output name=files::$files"
           fi
+      - name: Check for new files in pipImport.py
+        id: check_pip_files
+        run: |
+          pip_files=$(grep -oP "(?<=remote_repo\(\['src\/).*?(?='\],)" pipImport.py)
+          if [[ -z "$pip_files" ]]; then
+            echo "No files in pipImport.py"
+          else
+            echo "Files in pipImport.py:"
+            echo "$pip_files"
+          fi
       - name: Add new file names to pipImport.py
         if: steps.check_files.outputs.files != ''
         run: |
-          files="${{ steps.check_files.outputs.files }}"
-          for file in $files; do
-            echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/main/src/$file')" >> pipImport.py
+          src_files="${{ steps.check_files.outputs.files }}"
+          pip_files="${{ steps.check_pip_files.outputs.pip_files }}"
+          for file in $src_files; do
+            if ! grep -q "$file" pipImport.py; then
+              echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/main/src/$file')" >> pipImport.py
+            fi
           done
-          sed -i '1i\from httpimport import remote_repo\n' pipImport.py
