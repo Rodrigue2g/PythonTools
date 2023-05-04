@@ -31,14 +31,27 @@ jobs:
       - name: Check for new files in pipImport.py
         id: check_pip_files
         run: |
-           pip_files="test"
-           if [[ -z "$pip_files" ]]; then
+           src_files=$(grep -rl --include='*.py' '' src/)
+           filenames=()
+           for file in $src_files; do
+              filename=$(basename "$file")
+              filenames+=("$filename")
+           done
+           echo "${filenames[@]}"  
+           pip_files=$(grep -oP "(?<=from\s)\w+" pipImport.py)
+           missing=()
+           for item in "${filenames[@]}"; do
+              if ! [[ "${pip_files[*]}" =~ "${item}" ]]; then
+                missing+=("$item")
+              fi
+           done
+           echo "Missing elements: ${missing[@]}"
+           if [[ -z "$missing" ]]; then
              echo "No new files"
            else
-             echo "$pip_files"
-             echo "files=$pip_files" >> "$GITHUB_OUTPUT"
+             echo "$missing"
+             echo "files=$missing" >> "$GITHUB_OUTPUT"
            fi
-
   update:
     runs-on: ubuntu-latest
     needs: get_files
@@ -52,11 +65,10 @@ jobs:
         run: |
           src_files=$OUTPUT1
           pip_files=$OUTPUT2
-          echo $pip_files
           for file in $pip_files; do
-            echo "$file"
             if ! grep -q "$file" pipImport.py; then
-              echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/main/src/$file')" >> pipImport.py
+              echo "with httpimport.remote_repo(['$file'], url):" >> pipImport.py
+              echo "    from $file import *" >> pipImport.py
             fi
           done   
       - name: Commit files  # transfer the new html files back into the repository
