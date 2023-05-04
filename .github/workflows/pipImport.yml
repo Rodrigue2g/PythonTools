@@ -4,30 +4,31 @@ on:
     paths:
       - 'src/**'
       - '!src/docs/**'
-      
 jobs:
   update:
     runs-on: ubuntu-latest
-    steps: 
-    - name: Print repository name
-      run: echo "Running in repository $GITHUB_REPOSITORY"
-    - name: Check for new files
-      id: check_files
-      run: |
-        git fetch --depth=1 origin main
-        files=$(git diff --name-only HEAD..origin/main src/)
-        if [[ -z "$files" ]]; then
-          echo "No new files"
-        else
-          echo "New files:"
-          echo "$files"
-          echo "::set-output name=files::$files"
-        fi
-    - name: Add new file names to pipImport.py
-      if: steps.check_files.outputs.files != ''
-      run: |
-        files="${{ steps.check_files.outputs.files }}"
-        for file in $files; do
-          echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/main/src/$file')" >> pipImport.py
-        done
-        sed -i '1i\from httpimport import remote_repo\n' pipImport.py
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Print repository name
+        run: echo "Running in repository $GITHUB_REPOSITORY"
+      - name: Check for new files
+        id: check_files
+        run: |
+          git fetch --depth=1 origin main
+          files=$(git diff --name-only HEAD..origin/main src/)
+          if [[ -z "$files" ]]; then
+            echo "No new files"
+          else
+            echo "New files:"
+            echo "$files"
+            echo "::set-output name=files::$files"
+          fi
+      - name: Add new file names to pipImport.py
+        if: steps.check_files.outputs.files != ''
+        run: |
+          files="${{ steps.check_files.outputs.files }}"
+          for file in $files; do
+            echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/main/src/$file')" >> pipImport.py
+          done
+          sed -i '1i\from httpimport import remote_repo\n' pipImport.py
