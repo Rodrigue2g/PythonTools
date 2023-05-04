@@ -31,3 +31,5 @@ with httpimport.remote_repo(["copyCatch"], url):
 #
 # End of file
 #
+with httpimport.remote_repo(['pipTest.py'], url):
+    from pipTest.py import *
