@@ -28,15 +28,15 @@ jobs:
       - name: Check for new files in pipImport.py
         id: check_pip_files
         run: |
-            cat pipImport.py
             pip_files=["test"]
             if [[ -z "$pip_files" ]]; then
-               echo "::set-output name=files::No files in pipImport.py"
+               echo "No new files"
             else
+               echo "{$pip_files}"
                echo "{files}={$pip_files}" >> $GITHUB_OUTPUT
             fi
       - name: Add new file names to pipImport.py
-        if: steps.check_files.outputs.files != ''
+        if: steps.check_pip_files.outputs.files != ''
         run: |
           src_files="${{ steps.check_files.outputs.files }}"
           pip_files="${{ steps.check_pip_files.outputs.files }}"
