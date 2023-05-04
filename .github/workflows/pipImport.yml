@@ -14,9 +14,9 @@ jobs:
     - name: Check for new files
       id: check_files
       run: |
-        cd ..
-        git fetch --depth=1 origin master
-        files=$(git diff --name-only HEAD..origin/master src/)
+        cd $GITHUB_REPOSITORY
+        git fetch --depth=1 origin main
+        files=$(git diff --name-only HEAD..origin/main src/)
         if [[ -z "$files" ]]; then
           echo "No new files"
         else
@@ -29,6 +29,6 @@ jobs:
       run: |
         files="${{ steps.check_files.outputs.files }}"
         for file in $files; do
-          echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/master/src/$file')" >> pipImport.py
+          echo "httpimport.remote_repo(['$file'], 'https://raw.githubusercontent.com/${{ github.repository }}/main/src/$file')" >> pipImport.py
         done
         sed -i '1i\from httpimport import remote_repo\n' pipImport.py
