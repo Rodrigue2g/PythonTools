@@ -75,7 +75,7 @@ jobs:
           pip_files=$OUTPUT2
           for file in $pip_files; do
             if ! grep -q "$file" pipImport.py; then
-              sed -i "/^## End of file.*/i with httpimport.remote_repo(['${file}'], url):\n    from ${file} import *\n" pipImport.py
+               sed -i "/^#\n# End of file.*/i with httpimport.remote_repo(['${file}'], url):\n    from ${file} import *\n" pipImport.py
             fi
           done
           
@@ -83,7 +83,7 @@ jobs:
         run: |
             if [[ -z $(git diff pipImport.py) ]]; then
               echo "No changes detected in pipImport.py"
-              exit 1
+              exit 0
             fi
       - name: Commit file
         run: |
