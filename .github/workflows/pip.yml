@@ -26,15 +26,18 @@ jobs:
           else
             echo "New files:"
             echo "$files"
-            echo "${{ env.files_output }}=${files}" >> $GITHUB_ENV
-          fi
+            echo "{files}={$files}" >> $GITHUB_OUTPUT
+           fi
       - name: Check for new files in pipImport.py
         id: check_pip_files
         run: |
-          pip_files=$(grep -oP "(?<=remote_repo\(\[ ')[^']+" pipImport.py)
-          new_files=$(git diff --name-only HEAD..origin/main | grep '^src/')
-          pip_files="${pip_files}$new_files"
-          echo "${{ env.pip_files_output }}=${pip_files}" >> $GITHUB_ENV
+           pip_files="test"
+           if [[ -z "$pip_files" ]]; then
+             echo "No new files"
+           else
+             echo "$pip_files"
+             echo "files=$pip_files" >> "$GITHUB_OUTPUT"
+           fi
 
   update:
     runs-on: ubuntu-latest
