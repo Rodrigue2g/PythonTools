@@ -20,6 +20,7 @@ with httpimport.remote_repo(["pipImport"], url):
     from pipImport import *
 """
 #
+"""
 import urllib
 import httpimport
 url = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main/src"
@@ -29,6 +30,15 @@ with httpimport.remote_repo(["copyCatch"], url):
     from copyCatch import *
 with httpimport.remote_repo(['pipTest'], url):
     from pipTest import *
+"""
+import urllib
+import httpimport
+url = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main/src"
+with httpimport.remote_repo(["pipUtility", "copyCatch", "pipTest"], url):
+    from pipUtility import *
+    from copyCatch import *
+    from pipTest import *
+    
 
 # End of file
 #
