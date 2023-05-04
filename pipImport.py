@@ -31,4 +31,3 @@ with httpimport.remote_repo(["copyCatch"], url):
 #
 # End of file
 #
-httpimport.remote_repo(['test'], 'https://raw.githubusercontent.com/Dequavious6/PythonTools/main/src/test')
