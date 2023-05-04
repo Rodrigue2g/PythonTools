@@ -34,7 +34,7 @@ jobs:
               exit 1
            fi
            ls
-           pip_files=$(grep -oP "(?<=remote_repo\(\[').*?(?='\],)" pipImport.py | grep '^src/' | grep -oP "(?<=from ).*(?= import)")
+           pip_files=$(grep -oP "(?<=remote_repo\(\[').*?(?='\],)" -r . | grep '^src/' | grep -oP "(?<=from ).*(?= import)")
            if [[ -z "$pip_files" ]]; then
               echo "No files in pipImport.py"
            else
