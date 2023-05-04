@@ -26,7 +26,13 @@ jobs:
           else
             echo "New files:"
             echo "$files"
-            echo "{files}={$files}" >> $GITHUB_OUTPUT
+            new_files=()
+            for file in $files; do
+               filename=$(basename "$file")
+               filename=$(echo "$filename" | sed 's/\.py$//')
+               new_files+=("$filename")
+            done
+            echo "{files}={$new_files}" >> $GITHUB_OUTPUT
            fi
       - name: Check for new files in pipImport.py
         id: check_pip_files
@@ -35,6 +41,7 @@ jobs:
            filenames=()
            for file in $src_files; do
               filename=$(basename "$file")
+              filename=$(echo "$filename" | sed 's/\.py$//')
               filenames+=("$filename")
            done
            echo "${filenames[@]}"  
@@ -67,17 +74,17 @@ jobs:
           pip_files=$OUTPUT2
           for file in $pip_files; do
             if ! grep -q "$file" pipImport.py; then
-              echo "with httpimport.remote_repo(['$file'], url):" >> pipImport.py
-              echo "    from $file import *" >> pipImport.py
+              sed -i "/#\n# End of file/i with httpimport.remote_repo(['${file}'], url):" pipImport.py
+              sed -i "/#\n# End of file/i     from '${file}' import \*" pipImport.py
             fi
           done   
-      - name: Commit files  # transfer the new html files back into the repository
+      - name: Commit file
         run: |
           git config --local user.name  ${{ github.actor }}
           git add pipImport.py
           git commit -m "Update pipImport.py file"
           
-      - name: Push changes  # push the output folder to your repo
+      - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
