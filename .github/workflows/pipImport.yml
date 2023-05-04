@@ -31,10 +31,9 @@ jobs:
             cat pipImport.py
             pip_files=["test"]
             if [[ -z "$pip_files" ]]; then
-              echo "No files in pipImport.py"
+               echo "::set-output name=files::No files in pipImport.py"
             else
-              echo "Files in pipImport.py:"
-              echo "$pip_files"
+               echo "::set-output name=files::Files in pipImport.py: $pip_files"
             fi
       - name: Add new file names to pipImport.py
         if: steps.check_files.outputs.files != ''
