@@ -30,15 +30,44 @@ with httpimport.remote_repo(["pipUtility", "copyCatch", "pipTest"], url):
     from pipTest import *
 """ 
 #
+import sys
 import urllib
 import httpimport
 url = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main/src"
-with httpimport.remote_repo(["pipUtility"], url):
+doc = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main/src/docs"
+with httpimport.remote_repo(['docs'], doc):
+     import docs as docs
+with httpimport.remote_repo(["pipUtility", "copyCatch", "pipTest"], url):
     from pipUtility import *
-with httpimport.remote_repo(["copyCatch"], url):
     from copyCatch import *
-with httpimport.remote_repo(['pipTest'], url):
     from pipTest import *
-
+    
+class Modules:
+    def __init__(self):
+        self.li = []
+        for key, value in sys.modules.items():
+            if "httpimport.HttpImporter" in str(value):
+                if key != "pipImport":
+                    module = Module(key)
+                    setattr(self, key, module)
+                    self.li.append(module)
+    def list(self):
+        print("List of available PyhtonTools: ")
+        for module in self.li:
+            print(module.name)                 
+class Module:
+    def __init__(self, name):
+        self.name = name
+    def docs(self):
+        print(f"Documentation of {self.name} module:")
+        print(Docs().getModuleDoc(self.name))
+        
+def help() -> None:
+    print("Welcome to Designø Python Tools")
+    print("To list the available modules, use: Moudles().list()")
+    print("To get the documentation of a certain module, use: Modules.moduleName.docs()")
+    
+__all__ = ['help', 'Modules']   
+# 
 # End of file
 #
