@@ -47,7 +47,7 @@ class Modules:
         self.li = []
         for key, value in sys.modules.items():
             if "httpimport.HttpImporter" in str(value):
-                if key != "pipImport" && key != "docs":
+                if key != "pipImport" and key != "docs":
                     module = Module(key)
                     setattr(self, key, module)
                     self.li.append(module)
