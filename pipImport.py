@@ -65,7 +65,7 @@ class Module:
 def help() -> None:
     print("Welcome to Designø Python Tools")
     print("To list the available modules, use: Moudles().list()")
-    print("To get the documentation of a certain module, use: Modules.moduleName.docs()")
+    print("To get the documentation of a certain module, use: Modules().moduleName.docs()")
     
 __all__ = ['help', 'Modules']   
 # 
