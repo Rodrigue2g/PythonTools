@@ -60,7 +60,7 @@ class Module:
         self.name = name
     def docs(self):
         print(f"Documentation of {self.name} module:")
-        print(Docs().getModuleDoc(self.name))
+        print(docs.getModuleDoc(self.name))
         
 def help() -> None:
     print("Welcome to Designø Python Tools")
