@@ -47,7 +47,7 @@ def help() -> None:
     print("To list the available modules, use: Moudles().list()")
     print("To get the documentation of a certain module, use: Modules().moduleName.docs()")
     
-#__all__ = ['help']   
+__all__ = ['help']   
 # 
 # End of file
 #
