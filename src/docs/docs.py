@@ -14,8 +14,8 @@ class Module:
     def __init__(self, name):
         self.name = name
     def docs(self):
-        prPurple(f"Documentation of {self.name} module:")
-        prIt(Docs().getModuleDoc(self.name))
+        print("\033[1m"+"Documentation of " +"\033[4m" + f"{self.name}"+ "\033[00m" + "\033[1m" + " module:")
+        prPurple(Docs().getModuleDoc(self.name))
         
 class Modules:
     def __init__(self):
