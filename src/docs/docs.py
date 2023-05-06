@@ -9,7 +9,13 @@ class Docs:
     def getModuleDoc(self, name) -> str:
         return self.docs.get(name, "No documentation available for this module.")
         
-
+class Module:
+    def __init__(self, name):
+        self.name = name
+    def docs(self):
+        print(f"Documentation of {self.name} module:")
+        print(Docs().getModuleDoc(self.name))
+        
 class Modules:
     def __init__(self):
         self.li = []
@@ -23,11 +29,5 @@ class Modules:
         print("List of available PyhtonTools: ")
         for module in self.li:
             print(module.name)                 
-class Module:
-    def __init__(self, name):
-        self.name = name
-    def docs(self):
-        print(f"Documentation of {self.name} module:")
-        print(Docs().getModuleDoc(self.name))
     
 __all__ = ['Modules']
