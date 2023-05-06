@@ -9,9 +9,25 @@ class Docs:
     def getModuleDoc(self, name) -> str:
         return self.docs.get(name, "No documentation available for this module.")
         
-def getModuleDoc(name) -> str:
-    d = Docs()
-    return d.getModuleDoc(name)
+
+class Modules:
+    def __init__(self):
+        self.li = []
+        for key, value in sys.modules.items():
+            if "httpimport.HttpImporter" in str(value):
+                if key != "pipImport" and key != "docs":
+                    module = Module(key)
+                    setattr(self, key, module)
+                    self.li.append(module)
+    def list(self):
+        print("List of available PyhtonTools: ")
+        for module in self.li:
+            print(module.name)                 
+class Module:
+    def __init__(self, name):
+        self.name = name
+    def docs(self):
+        print(f"Documentation of {self.name} module:")
+        print(Docs().getModuleDoc(self.name))
     
-    
-__all__ = ['getModuleDoc']
+__all__ = ['Modules']
