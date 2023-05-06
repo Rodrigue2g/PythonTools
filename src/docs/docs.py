@@ -13,9 +13,5 @@ def getModuleDoc(name) -> str:
     d = Docs()
     return d.getModuleDoc(name)
     
-def help() -> None:
-    print("Welcome to Designø Python Tools")
-    print("To list the available modules, use: Moudles().list()")
-    print("To get the documentation of a certain module, use: Modules.moduleName.docs()")
     
-__all__ = ['getModuleDoc', 'help']
+__all__ = ['getModuleDoc']
