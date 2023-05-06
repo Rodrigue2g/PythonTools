@@ -30,7 +30,6 @@ with httpimport.remote_repo(["pipUtility", "copyCatch", "pipTest"], url):
     from pipTest import *
 """ 
 #
-import sys
 import urllib
 import httpimport
 url = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main/src"
