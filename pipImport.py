@@ -36,12 +36,14 @@ url = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main/src"
 doc = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main/src/docs"
 with httpimport.remote_repo(['docs'], doc):
     from docs import *
-with httpimport.remote_repo(["pipUtility", "copyCatch", "pipTest"], url):
+with httpimport.remote_repo(['pipUtility'], url):
     from pipUtility import *
+with httpimport.remote_repo(['copyCatch'], url):
     from copyCatch import *
-    from pipTest import *
-    
-        
+with httpimport.remote_repo(['pipTest'], url):
+    from pipTest import *   
+  
+
 def help() -> None:
     print("Welcome to Designø Python Tools")
     print("To list the available modules, use: Moudles().list()")
