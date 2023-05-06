@@ -1,5 +1,4 @@
 import sys
-
 class Docs:
     def __init__(self):
         self.docs = {
@@ -15,7 +14,7 @@ class Module:
     def __init__(self, name):
         self.name = name
     def docs(self):
-        print(f"Documentation of {self.name} module:")
+        prPurple(f"Documentation of {self.name} module:")
         print(Docs().getModuleDoc(self.name))
         
 class Modules:
@@ -28,8 +27,14 @@ class Modules:
                     setattr(self, key, module)
                     self.__li.append(module)
     def list(self):
-        print("List of available PyhtonTools: ")
+        prCyan("List of available PyhtonTools: ")
         for module in self.__li:
-            print(module.name)                 
+            prBold(module.name)                 
     
 __all__ = ['Modules']
+
+def prBold(txt): print("\033[1m{}\033[00m" .format(txt))
+def prRed(txt): print("\033[91m{}\033[00m" .format(txt))
+def prGreen(txt): print("\033[92m{}\033[00m" .format(txt))
+def prCyan(txt): print("\033[96m{}\033[00m" .format(txt))
+def prPurple(txt): print("\033[95m{}\033[00m" .format(txt))
