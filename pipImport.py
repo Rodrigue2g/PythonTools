@@ -45,9 +45,9 @@ with httpimport.remote_repo(['pipTest'], url):
   
 
 def help() -> None:
-    print("Welcome to Designø Python Tools")
-    print("To list the available modules, use: Moudles().list()")
-    print("To get the documentation of a certain module, use: Modules().moduleName.docs()")
+    print("Welcome to " + "\033[1m" + "Design" + "\033[5m" + "ø" + "\033[0m" + "\033[1m" + "Python Tools" + "\033[0m")
+    print("To list the " +  "\033[1m" + "\033[3m" + "available modules" + "\033[0m" + ", use: " + "\033[95m" + "Moudles().list()" + "\033[0m")
+    print("To get the " + "\033[1m" + "\033[3m" + "documentation" + "\033[0m" + " of a certain module, use: " + "\033[95m" + "Modules().moduleName.docs()" + "\033[0m")
     
 #__all__ = ['help']   
 # 
