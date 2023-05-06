@@ -36,7 +36,7 @@ import httpimport
 url = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main/src"
 doc = "https://raw.githubusercontent.com/Dequavious6/PythonTools/main/src/docs"
 with httpimport.remote_repo(['docs'], doc):
-     import docs as docs
+    from docs import *
 with httpimport.remote_repo(["pipUtility", "copyCatch", "pipTest"], url):
     from pipUtility import *
     from copyCatch import *
@@ -48,7 +48,7 @@ def help() -> None:
     print("To list the available modules, use: Moudles().list()")
     print("To get the documentation of a certain module, use: Modules().moduleName.docs()")
     
-__all__ = ['help']   
+#__all__ = ['help']   
 # 
 # End of file
 #
