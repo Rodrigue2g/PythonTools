@@ -1,3 +1,5 @@
+import sys
+
 class Docs:
     def __init__(self):
         self.docs = {
