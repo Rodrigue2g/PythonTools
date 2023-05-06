@@ -15,7 +15,7 @@ class Module:
         self.name = name
     def docs(self):
         prPurple(f"Documentation of {self.name} module:")
-        print(Docs().getModuleDoc(self.name))
+        prIt(Docs().getModuleDoc(self.name))
         
 class Modules:
     def __init__(self):
@@ -27,14 +27,18 @@ class Modules:
                     setattr(self, key, module)
                     self.__li.append(module)
     def list(self):
-        prCyan("List of available PyhtonTools: ")
+        prBoldIt("List of available PyhtonTools: ")
         for module in self.__li:
-            prBold(module.name)                 
+            prIt(module.name)                 
     
 __all__ = ['Modules']
 
 def prBold(txt): print("\033[1m{}\033[00m" .format(txt))
+def prIt(txt): print("\033[3m{}\033[00m" .format(txt))
+def prBoldIt(txt): print("\033[1m"+"\033[3m{}\033[00m" .format(txt))
+def prUnderlined(txt): print("\033[4m{}\033[00m" .format(txt))
 def prRed(txt): print("\033[91m{}\033[00m" .format(txt))
 def prGreen(txt): print("\033[92m{}\033[00m" .format(txt))
+def prPurple(txt): print("\033[94m{}\033[00m" .format(txt))
+def prPink(txt): print("\033[95m{}\033[00m" .format(txt))
 def prCyan(txt): print("\033[96m{}\033[00m" .format(txt))
-def prPurple(txt): print("\033[95m{}\033[00m" .format(txt))
