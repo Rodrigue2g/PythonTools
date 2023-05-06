@@ -20,16 +20,16 @@ class Module:
         
 class Modules:
     def __init__(self):
-        self.li = []
+        self.__li = []
         for key, value in sys.modules.items():
             if "httpimport.HttpImporter" in str(value):
                 if key != "pipImport" and key != "docs":
                     module = Module(key)
                     setattr(self, key, module)
-                    self.li.append(module)
+                    self.__li.append(module)
     def list(self):
         print("List of available PyhtonTools: ")
-        for module in self.li:
+        for module in self.__li:
             print(module.name)                 
     
 __all__ = ['Modules']
